@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/detailStyle.css">
+    <title><%= product.name %></title>
+</head>
+<body>
+
+    <div id="title">
+        <a href="http://localhost:3000/"><img src="/tapicuru.jpg" alt=""></a>
+       <div> <h1>Feira do Biguá</h1>
+    <h2>Gerenciamento de Estoque</h2></div></div>
+
+    <h1><%= product.name %></h1>
+<img class="mainImage" src=" <%= product.image %> " alt="">
+<h2> Categoria: <a href="http://localhost:3000/products?category=<%= product.category %>"><%= product.category %></a></h2>
+<form action="/products/<%= product.id %>?_method=PATCH" method="POST">    
+<h2>Preço: <%= product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });%></h2>
+    <label for="price">Alterar preço do produto: </label>
+        <input type="number" min="0" step = '0.01' name="price" value="<%= product.price%>">
+        <button> Alterar Preço</button>
+    </form>
+    <form action="/products/<%= product.id %>?_method=PATCH" method="POST">
+        <h2> Quantidade em estoque: 
+            <% if (product.quantity === 0) { %>
+                <b>ESGOTADO</b>
+            <% }  else {%>
+            <%= product.quantity %> 
+        <% } %> </h2>
+<label for="quantity">Quantidade de produtos disponíveis: </label>
+        <input type="number" min="0" name="quantity" value="<%= product.quantity%>">
+        <button> Alterar Quantidade</button>
+    </form>
+
+    <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
+        <button id="submit" type="button">Remover este item do estoque</button>
+    </form>
+    <script src="/js/detail.js"></script>
+</body>
+</html>

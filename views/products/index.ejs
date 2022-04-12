@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/indexStyle.css">
+    <title>Feira Bigua</title>
+</head>
+<body>
+    <div id="title">
+        <a href="http://localhost:3000/"><img src="/tapicuru.jpg" alt=""></a>
+       <div> <h1>Feira do Biguá</h1>
+    <h2>Gerenciamento de Estoque</h2></div></div>
+
+        <div class="container">
+            <div class="optionBar">
+
+                <form action="products" method="">
+<label for="cat">Escolha por categoria:</label>
+                    <select type="text" id="cat" name="category">
+                        <option value="Itens">categoria</option>
+    <% for (let c of categories){%>
+        <option value="<%= c %>" <%= category === c ? 'Selected' : '' %>> <%= c %> </option>
+    <% } %> 
+                    </select>
+                    <button>Organizar</button>
+                </form>
+                    
+                 <a href="http://localhost:3000/new"><button>Adicionar Produto</button></a>    
+                
+                </div>
+
+
+            <div class="itemSist"><h2><%= category %> no sistema</h2></div>
+             <% if (category !== 'Itens'){ %> 
+            <div class="itemSist"><h3><a href="http://localhost:3000/">Ver todos os produtos</a></h3></div>
+                <% } %> 
+        <div class="itemsList">
+    <%  for (let p of products){ %>
+            <a href="http://localhost:3000/products/<%= p.id %>">
+            <div class="productSquare">
+                    <img src= <%= p.image %> alt=" <%= p.name %> ">
+                        <div class="nameLink"><span><%= p.name %></span></div>
+                    <div class="priceRow"> <span><%= p.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });%></span>
+                    <span>x <b><%= p.quantity %></b></span></div>
+                    <div> <%= p.category %>  </div>  
+                </div>
+            </a>  
+            <%   } %>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>

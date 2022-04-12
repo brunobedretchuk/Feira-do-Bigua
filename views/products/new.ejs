@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/indexStyle.css">
+    <title>Adicionar Produto</title>
+</head>
+<body>
+    <div id="title">
+        <a href="http://localhost:3000/"><img src="tapicuru.jpg" alt=""></a>
+       <div> <h1>Feira do Biguá</h1>
+    <h2>Adicionar Item</h2></div></div>
+
+        <div class="container">
+           
+            <div><h2>Insira os Dados do Produto:</h2></div>
+            <div>
+<form action="/products" method="POST" >
+<input type="text" id="name" name="name" placeholder="Nome do Produto">
+<input type="number" id="price" step="0.01" min="0" name="price" placeholder="Preço Unitário">
+<select name="category" id="category">
+    <option value="">categoria</option>
+    <% for (let c of categories){%>
+        <option value="<%= c %>"><%= c %></option>
+    <% } %> 
+</select>
+<input type="number" id="quantity" min="0" name="quantity" placeholder="Quantidade">
+<input type="text" name="image" id="url" placeholder="URL da Imagem">
+<button id="submit" type="button" >Enviar</button>
+</form>
+
+            </div>
+    </div>
+
+
+
+    <script src="/js/new.js"></script>
+</body>
+</html>
